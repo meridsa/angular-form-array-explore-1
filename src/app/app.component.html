@@ -1,0 +1,33 @@
+<hello name="{{ name }}"></hello>
+<p>
+	Start editing to see some magic happen :)
+</p>
+<div class="formContainer">
+	<form [formGroup]=houseForm>
+		<div class="formElement">
+			Address:
+			<input type="text" formControlName="address">
+    </div>
+    <div class="formElement">
+      Material:
+      <select formControlName="material">
+        <option *ngFor="let material of materials" value="material">
+          {{material}}
+        </option>
+      </select>
+    </div>
+    <div formArrayName="residents" class="formElement">
+      Residents<button (click)="addResident()">+</button>
+      <div *ngFor="let resident of residents.controls; let i=index"
+        class="residentFormElement">
+        Resident {{i + 1}}:
+        <input type="text" [formControlName]="i">
+        <button (click)="removeResident(i)">X</button>
+      </div>
+    </div>
+    <div class="formElement">
+      Area:
+      <input type="number" formControlName="area">
+    </div>
+	</form>
+</div>
